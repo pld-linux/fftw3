@@ -3,7 +3,7 @@
 #
 %ifarch sparc
 # sparc has sizeof(double long)==sizeof(double)
-%undefine	with_long
+%undefine	with_fftwl
 %endif
 Summary:	Fast Fourier Transform library
 Summary(pl):	Biblioteka z funkcjami szybkiej transformaty Fouriera
