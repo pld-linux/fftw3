@@ -8,6 +8,7 @@ Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	ftp://ftp.fftw.org/pub/fftw/fftw-%{version}.tar.gz
+# Source0-md5:	6b09e3b141a9f1aae8b3a1d64fff6982
 Patch0:		%{name}-info.patch
 Icon:		fftw-logo-thumb.gif
 URL:		http://www.fftw.org/
