@@ -40,30 +40,29 @@ suporte a threads, normal e dupla precisão (Os arquivos de precisão
 normal tem um prefixo "s").
 
 %package devel
-Summary:	Headers, libraries & docs for fftw
-Summary(pl):	Nag³ówki, biblioteki oraz dokumentacja do fftw
-Summary(pt_BR):	headers, bibliotecas e documentação do pacote FFTW
+Summary:	Header files and documentation for fftw
+Summary(pl):	Pliki nag³ówkowe oraz dokumentacja do fftw
+Summary(pt_BR):	Headers e documentação do pacote FFTW
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
 
 %description devel
-This package contains the additional header files, documentation and
-libraries you need to develop programs using the FFTW (fast fourier
-transform library).
+This package contains the header files and documentation you need to
+develop programs using the FFTW (fast fourier transform library).
 
 %description devel -l pl
-Ten pakiet zawiera dodatkowe pliki nag³ówkowe, dokumetacjê oraz
-biblioteki niezbêdne do tworzenia programów u¿ywaj±cych biblioteki
-FFTW (fast fourier transform library).
+Ten pakiet zawiera pliki nag³ówkowe oraz dokumetacjê potrzebne do
+tworzenia programów u¿ywaj±cych biblioteki FFTW (wykonuj±cej szybk±
+transformatê Fouriera).
 
 %description devel -l pt_BR
-Este pacote contém documentação, headers e bibliotecas adicionais para
-desenvolver programas usando a FFTW.
+Este pacote contém documentação e headers adicionais para desenvolver
+programas usando a FFTW.
 
 %package static
 Summary:	Static fftw libraries
 Summary(pl):	Statyczne biblioteki fftw
-Summary(pt_BR):	bibliotecas estáticas do pacote FFTW
+Summary(pt_BR):	Bibliotecas estáticas do pacote FFTW
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}
 
@@ -139,8 +138,8 @@ rm -rf inst-*{%{_bindir}/fftw-wisdom-to-conf,%{_includedir}} \
 	inst-*{%{_infodir},%{_mandir}/man1/fftw-wisdom-to-conf.1}
 
 # install prepared remaining versions
-tar cf - . -C inst-single | tar xf - -C $RPM_BUILD_ROOT
-tar cf - . -C inst-double | tar xf - -C $RPM_BUILD_ROOT
+tar cf - -C inst-single . | tar xf - -C $RPM_BUILD_ROOT
+tar cf - -C inst-double . | tar xf - -C $RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
