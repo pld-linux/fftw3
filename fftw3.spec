@@ -238,6 +238,9 @@ for ver in single double long-double ; do
 %ifarch ppc
 		OPTS="--enable-altivec"
 %endif
+%ifnarch i586 i686 k6 athlon ppc
+		:	# keep sh happy about syntax
+%endif
 	fi
 %ifarch i686
 	# SSE2 only for double
