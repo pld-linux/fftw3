@@ -16,7 +16,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gcc-g77
 BuildRequires:	libtool
-Requires:	%{name}-common = %{version}
+Requires:	%{name}-common = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -47,8 +47,8 @@ Summary:	Development files for fftw
 Summary(pl):	Pliki programistyczne do fftw
 Summary(pt_BR):	Headers e documentação do pacote FFTW
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
-Requires:	%{name}-common-devel = %{version}
+Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-common-devel = %{version}-%{release}
 
 %description devel
 This package contains the files you need to develop programs using the
@@ -67,7 +67,7 @@ Summary:	Static fftw libraries
 Summary(pl):	Statyczne biblioteki fftw
 Summary(pt_BR):	Bibliotecas estáticas do pacote FFTW
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static fftw libraries.
@@ -82,7 +82,7 @@ Este pacote contém as bibliotecas estáticas do pacote FFTW.
 Summary:	Fast Fourier Transform library - single precision
 Summary(pl):	Biblioteka z funkcjami szybkiej transformaty Fouriera - pojedynczej precyzji
 Group:		Libraries
-Requires:	%{name}-common = %{version}
+Requires:	%{name}-common = %{version}-%{release}
 
 %description single
 FFTW is a collection of fast C routines for computing the Discrete
@@ -103,8 +103,8 @@ jednoprocesorowych oraz z obs³ug± w±tków.
 Summary:	Development files for single precision fftw
 Summary(pl):	Pliki programistyczne do fftw pojedynczej precyzji
 Group:		Development/Libraries
-Requires:	%{name}-common-devel = %{version}
-Requires:	%{name}-single = %{version}
+Requires:	%{name}-common-devel = %{version}-%{release}
+Requires:	%{name}-single = %{version}-%{release}
 
 %description single-devel
 This package contains the files you need to develop programs using the
@@ -119,7 +119,7 @@ Fouriera).
 Summary:	Static fftw single precision libraries
 Summary(pl):	Statyczne biblioteki fftw pojedynczej precyzji
 Group:		Development/Libraries
-Requires:	%{name}-single-devel = %{version}
+Requires:	%{name}-single-devel = %{version}-%{release}
 
 %description single-static
 Static fftw single precision libraries.
@@ -131,7 +131,7 @@ Statyczne biblioteki fftw pojedynczej precyzji.
 Summary:	Fast Fourier Transform library - long double precision
 Summary(pl):	Biblioteka z funkcjami szybkiej transformaty Fouriera - rozszerzonej precyzji
 Group:		Libraries
-Requires:	%{name}-common = %{version}
+Requires:	%{name}-common = %{version}-%{release}
 
 %description long
 FFTW is a collection of fast C routines for computing the Discrete
@@ -152,8 +152,8 @@ jednoprocesorowych oraz z obs³ug± w±tków.
 Summary:	Development files for long double precision fftw
 Summary(pl):	Pliki programistyczne do fftw rozszerzonej precyzji
 Group:		Development/Libraries
-Requires:	%{name}-common-devel = %{version}
-Requires:	%{name}-long = %{version}
+Requires:	%{name}-common-devel = %{version}-%{release}
+Requires:	%{name}-long = %{version}-%{release}
 
 %description long-devel
 This package contains the files you need to develop programs using the
@@ -168,7 +168,7 @@ Fouriera).
 Summary:	Static fftw long double precision libraries
 Summary(pl):	Statyczne biblioteki fftw rozszerzonej precyzji
 Group:		Development/Libraries
-Requires:	%{name}-long-devel = %{version}
+Requires:	%{name}-long-devel = %{version}-%{release}
 
 %description long-static
 Static fftw long double precision libraries.
@@ -193,7 +193,7 @@ dokumentacja, narzêdzie fftw-wisdom-to-conf).
 Summary:	Development files common for all versions of fftw libraries
 Summary(pl):	Pliki programistyczne wspólne dla wszystkich wersji bibliotek fftw
 Group:		Development/Libraries
-Requires:	%{name}-common
+Requires:	%{name}-common = %{version}-%{release}
 
 %description common-devel
 Development files common for all versions of fftw libraries (header
