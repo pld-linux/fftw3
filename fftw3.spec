@@ -1,5 +1,5 @@
 #
-%bcond_without	fftwl	# don't build -long subpackages
+%bcond_without	fftwl	# don't build "long" subpackages
 #
 %ifarch sparc
 # sparc has sizeof(double long)==sizeof(double)
@@ -229,7 +229,7 @@ cp -a `cat files.list` long-double
 ln -sf . double
 
 # MMX/SSE/etc. seem to be safe because of runtime CPU detection
-for ver in single double %{with_fftwl:long-double} ; do
+for ver in single double %{?with_fftwl:long-double} ; do
 	OPTS=""
 	# k7,SSE,3dnow,altivec only for single
 	if [ "$ver" = "single" ]; then
