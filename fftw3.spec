@@ -243,7 +243,7 @@ for ver in single double long-double ; do
 	# SSE2 only for double
 	if [ "$ver" = "double" ]; then
 		OPTS="--enable-sse2"
-	endif
+	fi
 %endif
 cd $ver
 %configure \
