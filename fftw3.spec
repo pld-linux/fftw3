@@ -119,7 +119,9 @@ for ver in single double long-double ; do
 	--%{!?debug:dis}%{?debug:en}able-debug
 
 %{__make}
-%{__make} install DESTDIR=`pwd`/inst-$ver
+%{__make} install \
+	DESTDIR=`pwd`/inst-$ver
+
 	if [ "$ver" != "long-double" ]; then
 %{__make} clean
 	fi
@@ -132,7 +134,8 @@ done
 rm -rf $RPM_BUILD_ROOT
 
 # this installs last configured version (long-double)
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 # duplicates
 rm -rf inst-*{%{_bindir}/fftw-wisdom-to-conf,%{_includedir}} \
