@@ -1,8 +1,8 @@
 #
 %bcond_without	fftwl	# don't build "long" subpackages
 #
-%ifarch sparc
-# sparc has sizeof(double long)==sizeof(double)
+%ifarch alpha ppc sparc
+# sizeof(double long)==sizeof(double) on these archs
 %undefine	with_fftwl
 %endif
 Summary:	Fast Fourier Transform library
