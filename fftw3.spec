@@ -1,6 +1,5 @@
-# TODO: move single and long-double libs to subpackages
-Summary:	Fast Fourier transform library
-Summary(pl):	Biblioteka z funkacjami szybkiej transformaty Fouriera
+Summary:	Fast Fourier Transform library
+Summary(pl):	Biblioteka z funkcjami szybkiej transformaty Fouriera
 Summary(pt_BR):	biblioteca fast fourier transform
 Name:		fftw3
 Version:	3.0.1
@@ -10,11 +9,13 @@ Group:		Libraries
 Source0:	ftp://ftp.fftw.org/pub/fftw/fftw-%{version}.tar.gz
 # Source0-md5:	76cd21ecc9a7bed6343566c473c36477
 Patch0:		%{name}-info.patch
+Patch1:		%{name}-link.patch
 Icon:		fftw-logo-thumb.gif
 URL:		http://www.fftw.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
+Requires:	%{name}-common = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -41,20 +42,20 @@ suporte a threads, normal e dupla precisão (Os arquivos de precisão
 normal tem um prefixo "s").
 
 %package devel
-Summary:	Header files and documentation for fftw
-Summary(pl):	Pliki nag³ówkowe oraz dokumentacja do fftw
+Summary:	Development files for fftw
+Summary(pl):	Pliki programistyczne do fftw
 Summary(pt_BR):	Headers e documentação do pacote FFTW
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
+Requires:	%{name}-common-devel = %{version}
 
 %description devel
-This package contains the header files and documentation you need to
-develop programs using the FFTW (fast fourier transform library).
+This package contains the files you need to develop programs using the
+FFTW (fast fourier transform library).
 
 %description devel -l pl
-Ten pakiet zawiera pliki nag³ówkowe oraz dokumetacjê potrzebne do
-tworzenia programów u¿ywaj±cych biblioteki FFTW (wykonuj±cej szybk±
-transformatê Fouriera).
+Ten pakiet zawiera pliki potrzebne do tworzenia programów u¿ywaj±cych
+biblioteki FFTW (wykonuj±cej szybk± transformatê Fouriera).
 
 %description devel -l pt_BR
 Este pacote contém documentação e headers adicionais para desenvolver
@@ -76,34 +77,166 @@ Statyczne biblioteki fftw.
 %description static -l pt_BR
 Este pacote contém as bibliotecas estáticas do pacote FFTW.
 
+%package single
+Summary:	Fast Fourier Transform library - single precision
+Summary(pl):	Biblioteka z funkcjami szybkiej transformaty Fouriera - pojedynczej precyzji
+Group:		Libraries
+Requires:	%{name}-common = %{version}
+
+%description single
+FFTW is a collection of fast C routines for computing the Discrete
+Fourier Transform in one or more dimensions. It includes complex,
+real, and parallel transforms, and can handle arbitrary array sizes
+efficiently. This RPM package includes the single precision FFTW
+uniprocessor and threads libraries.
+
+%description single -l pl
+FFTW jest zbiorem szybkich funkcji C do obliczania dyskretnych
+transformat Fouriera w jednym lub wiêcej wymiarach. Zawiera równie¿
+zespolone, rzeczywiste oraz równoleg³e transformaty i potrafi wydajnie
+radziæ sobie z tablicami o dowolnych rozmiarach. Ten pakiet RPM
+zawiera wersje FFTW o pojedynczej precyzji dla architektur
+jednoprocesorowych oraz z obs³ug± w±tków.
+
+%package single-devel
+Summary:	Development files for single precision fftw
+Summary(pl):	Pliki programistyczne do fftw pojedynczej precyzji
+Group:		Development/Libraries
+Requires:	%{name}-common-devel = %{version}
+Requires:	%{name}-single = %{version}
+
+%description single-devel
+This package contains the files you need to develop programs using the
+single precision FFTW (fast fourier transform library).
+
+%description single-devel -l pl
+Ten pakiet zawiera pliki potrzebne do tworzenia programów u¿ywaj±cych
+biblioteki FFTW pojedynczej precyzji (wykonuj±cej szybk± transformatê
+Fouriera).
+
+%package single-static
+Summary:	Static fftw single precision libraries
+Summary(pl):	Statyczne biblioteki fftw pojedynczej precyzji
+Group:		Development/Libraries
+Requires:	%{name}-single-devel = %{version}
+
+%description single-static
+Static fftw single precision libraries.
+
+%description single-static -l pl
+Statyczne biblioteki fftw pojedynczej precyzji.
+
+%package long
+Summary:	Fast Fourier Transform library - long double precision
+Summary(pl):	Biblioteka z funkcjami szybkiej transformaty Fouriera - rozszerzonej precyzji
+Group:		Libraries
+Requires:	%{name}-common = %{version}
+
+%description long
+FFTW is a collection of fast C routines for computing the Discrete
+Fourier Transform in one or more dimensions. It includes complex,
+real, and parallel transforms, and can handle arbitrary array sizes
+efficiently. This RPM package includes the long double precision FFTW
+uniprocessor and threads libraries.
+
+%description long -l pl
+FFTW jest zbiorem szybkich funkcji C do obliczania dyskretnych
+transformat Fouriera w jednym lub wiêcej wymiarach. Zawiera równie¿
+zespolone, rzeczywiste oraz równoleg³e transformaty i potrafi wydajnie
+radziæ sobie z tablicami o dowolnych rozmiarach. Ten pakiet RPM
+zawiera wersje FFTW o rozszerzonej precyzji dla architektur
+jednoprocesorowych oraz z obs³ug± w±tków.
+
+%package long-devel
+Summary:	Development files for long double precision fftw
+Summary(pl):	Pliki programistyczne do fftw rozszerzonej precyzji
+Group:		Development/Libraries
+Requires:	%{name}-common-devel = %{version}
+Requires:	%{name}-long = %{version}
+
+%description long-devel
+This package contains the files you need to develop programs using the
+long double precision FFTW (fast fourier transform library).
+
+%description long-devel -l pl
+Ten pakiet zawiera pliki potrzebne do tworzenia programów u¿ywaj±cych
+biblioteki FFTW rozszerzonej precyzji (wykonuj±cej szybk± transformatê
+Fouriera).
+
+%package long-static
+Summary:	Static fftw long double precision libraries
+Summary(pl):	Statyczne biblioteki fftw rozszerzonej precyzji
+Group:		Development/Libraries
+Requires:	%{name}-long-devel = %{version}
+
+%description long-static
+Static fftw long double precision libraries.
+
+%description long-static -l pl
+Statyczne biblioteki fftw rozszerzonej precyzji.
+
+%package common
+Summary:	Files common for all versions of fftw libraries
+Summary(pl):	Pliki wspólne dla wszystkich wersji bibliotek fftw
+Group:		Libraries
+
+%description common
+Files common for all versions of fftw libraries (basic documentation,
+fftw-wisdom-to-conf utility).
+
+%description common -l pl
+Pliki wspólne dla wszystkich wersji bibliotek fftw (podstawowa
+dokumentacja, narzêdzie fftw-wisdom-to-conf).
+
+%package common-devel
+Summary:	Development files common for all versions of fftw libraries
+Summary(pl):	Pliki programistyczne wspólne dla wszystkich wersji bibliotek fftw
+Group:		Development/Libraries
+Requires:	%{name}-common
+
+%description common-devel
+Development files common for all versions of fftw libraries (header
+files, development documentation).
+
+%description common-devel -l pl
+Pliki programistyczne wspólne dla wszystkich wersji bibliotek fftw
+(pliki nag³ówkowe, dokumentacja programisty).
+
 %prep
 %setup -q -n fftw-%{version}
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-# it seems to be safe because of runtime CPU detection
+
+# prepare three trees (for single, double, long-double precision)
+echo * > files.list
+install -d single long-double
+cp -a `cat files.list` single
+cp -a `cat files.list` long-double
+ln -sf . double
+
+# MMX/SSE/etc. seem to be safe because of runtime CPU detection
 for ver in single double long-double ; do
 	OPTS=""
 	# k7,SSE,3dnow,altivec only for single
 	if [ "$ver" = "single" ]; then
-		OPTS="
-%ifarch athlon
-		--enable-k7
-%endif
-%ifarch i686 athlon
-	--enable-sse
-%endif
 %ifarch i586 k6
-	--enable-3dnow
+		OPTS="--enable-3dnow"
+%endif
+%ifarch i686
+		OPTS="--enable-sse"
+%endif
+%ifarch athlon
+		OPTS="--enable-sse" # "--enable-k7" disabled - causes SEGV on athlons
 %endif
 %ifarch ppc
-	--enable-altivec
+		OPTS="--enable-altivec"
 %endif
-		"
 	fi
 %ifarch i686
 	# SSE2 only for double
@@ -111,6 +244,7 @@ for ver in single double long-double ; do
 		OPTS="--enable-sse2"
 	endif
 %endif
+cd $ver
 %configure \
 	--enable-shared \
 	--enable-threads \
@@ -119,31 +253,21 @@ for ver in single double long-double ; do
 	--%{!?debug:dis}%{?debug:en}able-debug
 
 %{__make}
-%{__make} install \
-	DESTDIR=`pwd`/inst-$ver
 
-	if [ "$ver" != "long-double" ]; then
-%{__make} clean
-	fi
+cd ..
 done
-
-# remake docs removed by make clean
-%{__make} fftw-faq.html -C doc/FAQ
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-# this installs last configured version (long-double)
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# duplicates
-rm -rf inst-*{%{_bindir}/fftw-wisdom-to-conf,%{_includedir}} \
-	inst-*{%{_infodir},%{_mandir}/man1/fftw-wisdom-to-conf.1}
+%{__make} install -C single \
+	DESTDIR=$RPM_BUILD_ROOT
 
-# install prepared remaining versions
-tar cf - -C inst-single . | tar xf - -C $RPM_BUILD_ROOT
-tar cf - -C inst-double . | tar xf - -C $RPM_BUILD_ROOT
+%{__make} install -C long-double\
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -151,28 +275,80 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%post devel
+%post common-devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
-%postun devel
+%postun common-devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYRIGHT ChangeLog NEWS README TODO
-%attr(755,root,root) %{_bindir}/fftw*-wisdom*
-%attr(755,root,root) %{_libdir}/libfftw3*.so.*.*.*
-%{_mandir}/man1/fftw*-wisdom*.1*
+%attr(755,root,root) %{_bindir}/fftw-wisdom
+%attr(755,root,root) %{_libdir}/libfftw3.so.*.*.*
+%attr(755,root,root) %{_libdir}/libfftw3_threads.so.*.*.*
+%{_mandir}/man1/fftw-wisdom.1*
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/html doc/FAQ/fftw-faq.html
-%attr(755,root,root) %{_libdir}/libfftw3*.so
-%{_libdir}/libfftw3*.la
-%{_includedir}/fftw3.*
-%{_infodir}/fftw3.info*
-%{_pkgconfigdir}/fftw3*.pc
+%attr(755,root,root) %{_libdir}/libfftw3.so
+%attr(755,root,root) %{_libdir}/libfftw3_threads.so
+%{_libdir}/libfftw3.la
+%{_libdir}/libfftw3_threads.la
+%{_pkgconfigdir}/fftw3.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libfftw3*.a
+%{_libdir}/libfftw3.a
+%{_libdir}/libfftw3_threads.a
+
+%files single
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/fftwf-wisdom
+%attr(755,root,root) %{_libdir}/libfftw3f.so.*.*.*
+%attr(755,root,root) %{_libdir}/libfftw3f_threads.so.*.*.*
+%{_mandir}/man1/fftwf-wisdom.1*
+
+%files single-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libfftw3f.so
+%attr(755,root,root) %{_libdir}/libfftw3f_threads.so
+%{_libdir}/libfftw3f.la
+%{_libdir}/libfftw3f_threads.la
+%{_pkgconfigdir}/fftw3f.pc
+
+%files single-static
+%defattr(644,root,root,755)
+%{_libdir}/libfftw3f.a
+%{_libdir}/libfftw3f_threads.a
+
+%files long
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/fftwl-wisdom
+%attr(755,root,root) %{_libdir}/libfftw3l.so.*.*.*
+%attr(755,root,root) %{_libdir}/libfftw3l_threads.so.*.*.*
+%{_mandir}/man1/fftwl-wisdom.1*
+
+%files long-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libfftw3l.so
+%attr(755,root,root) %{_libdir}/libfftw3l_threads.so
+%{_libdir}/libfftw3l.la
+%{_libdir}/libfftw3l_threads.la
+%{_pkgconfigdir}/fftw3l.pc
+
+%files long-static
+%defattr(644,root,root,755)
+%{_libdir}/libfftw3l.a
+%{_libdir}/libfftw3l_threads.a
+
+%files common
+%defattr(644,root,root,755)
+%doc AUTHORS COPYRIGHT ChangeLog NEWS README TODO
+%attr(755,root,root) %{_bindir}/fftw-wisdom-to-conf
+%{_mandir}/man1/fftw-wisdom-to-conf.1*
+
+%files common-devel
+%defattr(644,root,root,755)
+%doc doc/html doc/FAQ/fftw-faq.html
+%{_includedir}/fftw3.*
+%{_infodir}/fftw3.info*

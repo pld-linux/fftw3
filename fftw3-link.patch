@@ -1,0 +1,20 @@
+--- fftw-3.0.1/threads/Makefile.am.orig	2003-03-16 21:00:04.000000000 +0100
++++ fftw-3.0.1/threads/Makefile.am	2003-07-25 00:35:16.000000000 +0200
+@@ -10,3 +10,4 @@
+ hc2hc-dif.c vrank-geq1-rdft2.c f77api.c f77funcs.h
+ 
+ libfftw3@PREC_SUFFIX@_threads_la_LDFLAGS = -version-info @SHARED_VERSION_INFO@
++libfftw3@PREC_SUFFIX@_threads_la_LIBADD = $(top_builddir)/libfftw3@PREC_SUFFIX@.la -lpthread
+--- fftw-3.0.1/Makefile.am.orig	2003-07-25 00:37:43.000000000 +0200
++++ fftw-3.0.1/Makefile.am	2003-07-25 08:04:50.000000000 +0200
+@@ -8,8 +8,8 @@
+ GENFFT =
+ endif
+ 
+-SUBDIRS=support $(GENFFT) kernel simd dft rdft reodft threads api	\
+-libbench2 . tests doc tools
++SUBDIRS=support $(GENFFT) kernel simd dft rdft reodft api . threads	\
++libbench2 tests doc tools
+ EXTRA_DIST=COPYRIGHT bootstrap.sh CONVENTIONS fftw.pc.in acx_pthread.m4
+ 
+ libfftw3@PREC_SUFFIX@_la_SOURCES = 
