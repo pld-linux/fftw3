@@ -1,13 +1,14 @@
---- fftw-3.0/doc/fftw3.texi.orig	2003-04-15 20:53:44.000000000 +0200
-+++ fftw-3.0/doc/fftw3.texi	2003-05-13 21:49:02.000000000 +0200
+diff -aurN fftw-3.0.1.orig/doc/fftw3.texi fftw-3.0.1/doc/fftw3.texi
+--- fftw-3.0.1.orig/doc/fftw3.texi	2003-06-06 02:30:05.000000000 +0000
++++ fftw-3.0.1/doc/fftw3.texi	2003-07-09 20:53:20.000000000 +0000
 @@ -88,9 +88,9 @@
  @end quotation
  @end copying
  
 -@dircategory Texinfo documentation system
-+@dircategory Libraries:
++@dircategory Libraries
  @direntry
--* fftw3: (fftw3)FFTW User's Manual.
+-* fftw3: (fftw3).	FFTW User's Manual.
 +* fftw3: (fftw3).			Fast Fourier Transform library
  @end direntry
  
