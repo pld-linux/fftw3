@@ -18,7 +18,6 @@ Source0:	ftp://ftp.fftw.org/pub/fftw/fftw-%{version}.tar.gz
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		fftw-gcc4.patch
-Icon:		fftw-logo-thumb.gif
 URL:		http://www.fftw.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
