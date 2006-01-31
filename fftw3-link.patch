@@ -5,16 +5,16 @@
  
  libfftw3@PREC_SUFFIX@_threads_la_LDFLAGS = -version-info @SHARED_VERSION_INFO@
 +libfftw3@PREC_SUFFIX@_threads_la_LIBADD = $(top_builddir)/libfftw3@PREC_SUFFIX@.la -lpthread
---- fftw-3.0.1/Makefile.am.orig	2003-07-25 00:37:43.000000000 +0200
-+++ fftw-3.0.1/Makefile.am	2003-07-25 08:04:50.000000000 +0200
-@@ -8,8 +8,8 @@
- GENFFT =
- endif
+--- fftw-3.1/Makefile.am.orig	2006-01-28 01:16:28.000000000 +0100
++++ fftw-3.1/Makefile.am	2006-01-31 22:18:47.468155000 +0100
+@@ -10,8 +10,8 @@
+ 
+ ACLOCAL_AMFLAGS=-I ./m4
  
 -SUBDIRS=support $(GENFFT) kernel simd dft rdft reodft threads api	\
 -libbench2 . tests doc tools
-+SUBDIRS=support $(GENFFT) kernel simd dft rdft reodft api . threads	\
++SUBDIRS=support $(GENFFT) kernel simd dft rdft reodft api . threads \
 +libbench2 tests doc tools
- EXTRA_DIST=COPYRIGHT bootstrap.sh CONVENTIONS fftw.pc.in acx_pthread.m4
+ EXTRA_DIST=COPYRIGHT bootstrap.sh CONVENTIONS fftw.pc.in m4
  
- libfftw3@PREC_SUFFIX@_la_SOURCES = 
+ if HAVE_SIMD
