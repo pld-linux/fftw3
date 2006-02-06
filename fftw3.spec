@@ -10,7 +10,7 @@ Summary(pl):	Biblioteka z funkcjami szybkiej transformaty Fouriera
 Summary(pt_BR):	biblioteca fast fourier transform
 Name:		fftw3
 Version:	3.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 Source0:	ftp://ftp.fftw.org/pub/fftw/fftw-%{version}.tar.gz
@@ -22,6 +22,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gcc-g77
 BuildRequires:	libtool
+BuildRequires:	sed >= 4.0
 BuildRequires:	texinfo
 Requires:	%{name}-common = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -214,6 +215,7 @@ Pliki programistyczne wspólne dla wszystkich wersji bibliotek fftw
 %setup -q -n fftw-%{version}
 %patch0 -p1
 %patch1 -p1
+sed -i 's:#ifdef HAVE_ALTIVEC_H:#if 1:' simd/simd-altivec.h
 
 %build
 %{__libtoolize}
