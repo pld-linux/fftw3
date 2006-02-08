@@ -17,12 +17,12 @@ Source0:	ftp://ftp.fftw.org/pub/fftw/fftw-%{version}.tar.gz
 # Source0-md5:	911515569a8abdc7dbb207d53f34e60b
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
+Patch2:		%{name}-ac_simd.patch
 URL:		http://www.fftw.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gcc-g77
 BuildRequires:	libtool
-BuildRequires:	sed >= 4.0
 BuildRequires:	texinfo
 Requires:	%{name}-common = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -215,7 +215,7 @@ Pliki programistyczne wspólne dla wszystkich wersji bibliotek fftw
 %setup -q -n fftw-%{version}
 %patch0 -p1
 %patch1 -p1
-sed -i 's:#ifdef HAVE_ALTIVEC_H:#if 1:' simd/simd-altivec.h
+%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -224,6 +224,7 @@ sed -i 's:#ifdef HAVE_ALTIVEC_H:#if 1:' simd/simd-altivec.h
 %{__automake}
 
 # prepare three trees (for single, double, long-double precision)
+rm -rf single double long-double
 echo * > files.list
 install -d single long-double
 cp -a `cat files.list` single
