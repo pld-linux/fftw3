@@ -1,16 +1,9 @@
-#
-%bcond_without	fftwl	# don't build "long" subpackages
-#
-%ifarch alpha ppc sparc
-# sizeof(double long)==sizeof(double) on these archs
-%undefine	with_fftwl
-%endif
 Summary:	Fast Fourier Transform library
 Summary(pl):	Biblioteka z funkcjami szybkiej transformaty Fouriera
 Summary(pt_BR):	biblioteca fast fourier transform
 Name:		fftw3
 Version:	3.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		Libraries
 Source0:	ftp://ftp.fftw.org/pub/fftw/fftw-%{version}.tar.gz
@@ -21,7 +14,10 @@ Patch2:		%{name}-ac_simd.patch
 URL:		http://www.fftw.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gcc-g77
+# for 128-bit long double support
+BuildRequires:	gcc-fortran >= 5:4.1.0-1
+BuildRequires:	glibc >= 6:2.4-1
+#
 BuildRequires:	libtool
 BuildRequires:	texinfo
 Requires:	%{name}-common = %{version}-%{release}
@@ -232,7 +228,7 @@ cp -a `cat files.list` long-double
 ln -sf . double
 
 # MMX/SSE/etc. seem to be safe because of runtime CPU detection
-for ver in single double %{?with_fftwl:long-double} ; do
+for ver in single double long-double; do
 	OPTS=""
 	# k7,SSE,3dnow,altivec only for single
 	if [ "$ver" = "single" ]; then
@@ -277,10 +273,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install -C single \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%if %{with fftwl}
 %{__make} install -C long-double\
 	DESTDIR=$RPM_BUILD_ROOT
-%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -334,7 +328,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libfftw3f.a
 %{_libdir}/libfftw3f_threads.a
 
-%if %{with fftwl}
 %files long
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/fftwl-wisdom
@@ -354,7 +347,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libfftw3l.a
 %{_libdir}/libfftw3l_threads.a
-%endif
 
 %files common
 %defattr(644,root,root,755)
