@@ -3,8 +3,8 @@
 %bcond_without	fftwl	# don't build "long" subpackages
 #
 Summary:	Fast Fourier Transform library
-Summary(pl.UTF-8):   Biblioteka z funkcjami szybkiej transformaty Fouriera
-Summary(pt_BR.UTF-8):   biblioteca fast fourier transform
+Summary(pl.UTF-8):	Biblioteka z funkcjami szybkiej transformaty Fouriera
+Summary(pt_BR.UTF-8):	biblioteca fast fourier transform
 Name:		fftw3
 Version:	3.1.2
 Release:	3
@@ -56,8 +56,8 @@ normal tem um prefixo "s").
 
 %package devel
 Summary:	Development files for fftw
-Summary(pl.UTF-8):   Pliki programistyczne do fftw
-Summary(pt_BR.UTF-8):   Headers e documentação do pacote FFTW
+Summary(pl.UTF-8):	Pliki programistyczne do fftw
+Summary(pt_BR.UTF-8):	Headers e documentação do pacote FFTW
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-common-devel = %{version}-%{release}
@@ -76,8 +76,8 @@ programas usando a FFTW.
 
 %package static
 Summary:	Static fftw libraries
-Summary(pl.UTF-8):   Statyczne biblioteki fftw
-Summary(pt_BR.UTF-8):   Bibliotecas estáticas do pacote FFTW
+Summary(pl.UTF-8):	Statyczne biblioteki fftw
+Summary(pt_BR.UTF-8):	Bibliotecas estáticas do pacote FFTW
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -92,7 +92,7 @@ Este pacote contém as bibliotecas estáticas do pacote FFTW.
 
 %package single
 Summary:	Fast Fourier Transform library - single precision
-Summary(pl.UTF-8):   Biblioteka z funkcjami szybkiej transformaty Fouriera - pojedynczej precyzji
+Summary(pl.UTF-8):	Biblioteka z funkcjami szybkiej transformaty Fouriera - pojedynczej precyzji
 Group:		Libraries
 Requires:	%{name}-common = %{version}-%{release}
 
@@ -113,7 +113,7 @@ jednoprocesorowych oraz z obsługą wątków.
 
 %package single-devel
 Summary:	Development files for single precision fftw
-Summary(pl.UTF-8):   Pliki programistyczne do fftw pojedynczej precyzji
+Summary(pl.UTF-8):	Pliki programistyczne do fftw pojedynczej precyzji
 Group:		Development/Libraries
 Requires:	%{name}-common-devel = %{version}-%{release}
 Requires:	%{name}-single = %{version}-%{release}
@@ -129,7 +129,7 @@ Fouriera).
 
 %package single-static
 Summary:	Static fftw single precision libraries
-Summary(pl.UTF-8):   Statyczne biblioteki fftw pojedynczej precyzji
+Summary(pl.UTF-8):	Statyczne biblioteki fftw pojedynczej precyzji
 Group:		Development/Libraries
 Requires:	%{name}-single-devel = %{version}-%{release}
 
@@ -141,7 +141,7 @@ Statyczne biblioteki fftw pojedynczej precyzji.
 
 %package long
 Summary:	Fast Fourier Transform library - long double precision
-Summary(pl.UTF-8):   Biblioteka z funkcjami szybkiej transformaty Fouriera - rozszerzonej precyzji
+Summary(pl.UTF-8):	Biblioteka z funkcjami szybkiej transformaty Fouriera - rozszerzonej precyzji
 Group:		Libraries
 Requires:	%{name}-common = %{version}-%{release}
 
@@ -162,7 +162,7 @@ jednoprocesorowych oraz z obsługą wątków.
 
 %package long-devel
 Summary:	Development files for long double precision fftw
-Summary(pl.UTF-8):   Pliki programistyczne do fftw rozszerzonej precyzji
+Summary(pl.UTF-8):	Pliki programistyczne do fftw rozszerzonej precyzji
 Group:		Development/Libraries
 Requires:	%{name}-common-devel = %{version}-%{release}
 Requires:	%{name}-long = %{version}-%{release}
@@ -178,7 +178,7 @@ Fouriera).
 
 %package long-static
 Summary:	Static fftw long double precision libraries
-Summary(pl.UTF-8):   Statyczne biblioteki fftw rozszerzonej precyzji
+Summary(pl.UTF-8):	Statyczne biblioteki fftw rozszerzonej precyzji
 Group:		Development/Libraries
 Requires:	%{name}-long-devel = %{version}-%{release}
 
@@ -190,7 +190,7 @@ Statyczne biblioteki fftw rozszerzonej precyzji.
 
 %package common
 Summary:	Files common for all versions of fftw libraries
-Summary(pl.UTF-8):   Pliki wspólne dla wszystkich wersji bibliotek fftw
+Summary(pl.UTF-8):	Pliki wspólne dla wszystkich wersji bibliotek fftw
 Group:		Libraries
 
 %description common
@@ -203,7 +203,7 @@ dokumentacja, narzędzie fftw-wisdom-to-conf).
 
 %package common-devel
 Summary:	Development files common for all versions of fftw libraries
-Summary(pl.UTF-8):   Pliki programistyczne wspólne dla wszystkich wersji bibliotek fftw
+Summary(pl.UTF-8):	Pliki programistyczne wspólne dla wszystkich wersji bibliotek fftw
 Group:		Development/Libraries
 Requires:	%{name}-common = %{version}-%{release}
 
