@@ -293,6 +293,12 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
+%post	single -p /sbin/ldconfig
+%postun	single -p /sbin/ldconfig
+
+%post	long -p /sbin/ldconfig
+%postun	long -p /sbin/ldconfig
+
 %post common-devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
