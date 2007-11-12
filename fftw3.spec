@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	Biblioteka z funkcjami szybkiej transformaty Fouriera
 Summary(pt_BR.UTF-8):	biblioteca fast fourier transform
 Name:		fftw3
 Version:	3.1.2
-Release:	4
+Release:	5
 License:	GPL
 Group:		Libraries
 Source0:	ftp://ftp.fftw.org/pub/fftw/fftw-%{version}.tar.gz
@@ -250,7 +250,7 @@ for ver in single double %{?with_fftwl:long-double}; do
 %ifarch ppc
 		OPTS="--enable-altivec"
 %endif
-%ifnarch i586 i686 k6 athlon ppc
+%ifnarch i686 k6 athlon ppc
 		:	# keep sh happy about syntax
 %endif
 	fi
