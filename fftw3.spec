@@ -8,7 +8,7 @@ Summary(pt_BR.UTF-8):	biblioteca fast fourier transform
 Name:		fftw3
 Version:	3.1.2
 Release:	5
-License:	GPL
+License:	GPL v2+
 Group:		Libraries
 Source0:	ftp://ftp.fftw.org/pub/fftw/fftw-%{version}.tar.gz
 # Source0-md5:	08f2e21c9fd02f4be2bd53a62592afa4
@@ -228,14 +228,6 @@ Pliki programistyczne wspólne dla wszystkich wersji bibliotek fftw
 %{__autoconf}
 %{__automake}
 
-# prepare three trees (for single, double, long-double precision)
-rm -rf single double long-double
-echo * > files.list
-install -d single long-double
-cp -a `cat files.list` single
-cp -a `cat files.list` long-double
-ln -sf . double
-
 # MMX/SSE/etc. seem to be safe because of runtime CPU detection
 for ver in single double %{?with_fftwl:long-double}; do
 	OPTS=""
@@ -260,8 +252,9 @@ for ver in single double %{?with_fftwl:long-double}; do
 		OPTS="--enable-sse2"
 	fi
 %endif
-cd $ver
-%configure \
+install -d build-${ver}
+cd build-${ver}
+../%configure \
 	--enable-shared \
 	--enable-threads \
 	--enable-$ver \
@@ -269,21 +262,20 @@ cd $ver
 	--%{!?debug:dis}%{?debug:en}able-debug
 
 %{__make}
-
 cd ..
 done
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} install -C build-single \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__make} install -C single \
+%{__make} install -C build-double \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %if %{with fftwl}
-%{__make} install -C long-double \
+%{__make} install -C build-long-double \
 	DESTDIR=$RPM_BUILD_ROOT
 %endif
 
@@ -309,7 +301,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/fftw-wisdom
 %attr(755,root,root) %{_libdir}/libfftw3.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libfftw3.so.3
 %attr(755,root,root) %{_libdir}/libfftw3_threads.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libfftw3_threads.so.3
 %{_mandir}/man1/fftw-wisdom.1*
 
 %files devel
@@ -329,7 +323,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/fftwf-wisdom
 %attr(755,root,root) %{_libdir}/libfftw3f.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libfftw3f.so.3
 %attr(755,root,root) %{_libdir}/libfftw3f_threads.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libfftw3f_threads.so.3
 %{_mandir}/man1/fftwf-wisdom.1*
 
 %files single-devel
@@ -350,7 +346,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/fftwl-wisdom
 %attr(755,root,root) %{_libdir}/libfftw3l.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libfftw3l.so.3
 %attr(755,root,root) %{_libdir}/libfftw3l_threads.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libfftw3l_threads.so.3
 %{_mandir}/man1/fftwl-wisdom.1*
 
 %files long-devel
@@ -376,5 +374,6 @@ rm -rf $RPM_BUILD_ROOT
 %files common-devel
 %defattr(644,root,root,755)
 %doc doc/html doc/FAQ/fftw-faq.html
-%{_includedir}/fftw3.*
+%{_includedir}/fftw3.f
+%{_includedir}/fftw3.h
 %{_infodir}/fftw3.info*
