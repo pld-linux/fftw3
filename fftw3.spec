@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	Biblioteka z funkcjami szybkiej transformaty Fouriera
 Summary(pt_BR.UTF-8):	biblioteca fast fourier transform
 Name:		fftw3
 Version:	3.2
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Libraries
 Source0:	ftp://ftp.fftw.org/pub/fftw/fftw-%{version}.tar.gz
@@ -267,6 +267,7 @@ done
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/fftw
 
 %{__make} install -C build-single \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -368,6 +369,7 @@ rm -rf $RPM_BUILD_ROOT
 %files common
 %defattr(644,root,root,755)
 %doc AUTHORS COPYRIGHT ChangeLog NEWS README TODO
+%dir %{_sysconfdir}/fftw
 %attr(755,root,root) %{_bindir}/fftw-wisdom-to-conf
 %{_mandir}/man1/fftw-wisdom-to-conf.1*
 
