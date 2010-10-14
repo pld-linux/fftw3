@@ -5,16 +5,16 @@
  
  libfftw3@PREC_SUFFIX@_threads_la_LDFLAGS = -version-info @SHARED_VERSION_INFO@
 +libfftw3@PREC_SUFFIX@_threads_la_LIBADD = $(top_builddir)/libfftw3@PREC_SUFFIX@.la -lpthread
---- fftw-3.1/Makefile.am.orig	2006-01-28 01:16:28.000000000 +0100
-+++ fftw-3.1/Makefile.am	2006-01-31 22:18:47.468155000 +0100
-@@ -10,8 +10,8 @@
+--- fftw-3.2.2/Makefile.am.orig	2009-07-12 12:35:49.000000000 +0200
++++ fftw-3.2.2/Makefile.am	2010-10-14 09:20:15.323741882 +0200
+@@ -13,8 +13,8 @@
  
- ACLOCAL_AMFLAGS=-I ./m4
+ ACLOCAL_AMFLAGS=-I m4
  
 -SUBDIRS=support $(GENFFT) kernel simd dft rdft reodft api threads \
--cell libbench2 . tests doc tools
+-cell libbench2 . tests doc tools m4
 +SUBDIRS=support $(GENFFT) kernel simd dft rdft reodft api . threads \
-+cell libbench2 tests doc tools
- EXTRA_DIST=COPYRIGHT bootstrap.sh CONVENTIONS fftw.pc.in m4	\
- README.Cell
++cell libbench2 tests doc tools m4
+ EXTRA_DIST=COPYRIGHT bootstrap.sh CONVENTIONS fftw.pc.in README.Cell
  
+ if HAVE_SIMD

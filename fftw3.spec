@@ -6,16 +6,15 @@ Summary:	Fast Fourier Transform library
 Summary(pl.UTF-8):	Biblioteka z funkcjami szybkiej transformaty Fouriera
 Summary(pt_BR.UTF-8):	biblioteca fast fourier transform
 Name:		fftw3
-Version:	3.2
-Release:	2
+Version:	3.2.2
+Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	ftp://ftp.fftw.org/pub/fftw/fftw-%{version}.tar.gz
-# Source0-md5:	280960ddbad368ebb96c073a2b642f5d
+# Source0-md5:	b616e5c91218cc778b5aa735fefb61ae
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-ac_simd.patch
-Patch3:		%{name}-chk.patch
 URL:		http://www.fftw.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -220,7 +219,6 @@ Pliki programistyczne wspólne dla wszystkich wersji bibliotek fftw
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 %{__libtoolize}
@@ -292,10 +290,10 @@ rm -rf $RPM_BUILD_ROOT
 %post	long -p /sbin/ldconfig
 %postun	long -p /sbin/ldconfig
 
-%post common-devel	-p	/sbin/postshell
+%post	common-devel -p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
-%postun common-devel	-p	/sbin/postshell
+%postun	common-devel -p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
 %files
