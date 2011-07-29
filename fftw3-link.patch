@@ -1,20 +1,27 @@
---- fftw-3.0.1/threads/Makefile.am.orig	2003-03-16 21:00:04.000000000 +0100
-+++ fftw-3.0.1/threads/Makefile.am	2003-07-25 00:35:16.000000000 +0200
-@@ -10,3 +10,4 @@
- hc2hc-dif.c vrank-geq1-rdft2.c f77api.c f77funcs.h
- 
+--- fftw-3.3/threads/Makefile.am.orig	2011-07-27 02:28:29.000000000 +0200
++++ fftw-3.3/threads/Makefile.am	2011-07-28 20:21:46.135119454 +0200
+@@ -26,9 +26,11 @@
+ vrank-geq1-rdft2.c f77api.c f77funcs.h
+ libfftw3@PREC_SUFFIX@_threads_la_CFLAGS = $(PTHREAD_CFLAGS)
  libfftw3@PREC_SUFFIX@_threads_la_LDFLAGS = -version-info @SHARED_VERSION_INFO@
-+libfftw3@PREC_SUFFIX@_threads_la_LIBADD = $(top_builddir)/libfftw3@PREC_SUFFIX@.la -lpthread
---- fftw-3.2.2/Makefile.am.orig	2009-07-12 12:35:49.000000000 +0200
-+++ fftw-3.2.2/Makefile.am	2010-10-14 09:20:15.323741882 +0200
++libfftw3@PREC_SUFFIX@_threads_la_LIBADD = $(top_builddir)/libfftw3@PREC_SUFFIX@.la
+ 
+ libfftw3@PREC_SUFFIX@_omp_la_SOURCES = api.c conf.c openmp.c	\
+ threads.h dft-vrank-geq1.c ct.c rdft-vrank-geq1.c hc2hc.c	\
+ vrank-geq1-rdft2.c f77api.c f77funcs.h
+ libfftw3@PREC_SUFFIX@_omp_la_CFLAGS = $(OPENMP_CFLAGS)
+ libfftw3@PREC_SUFFIX@_omp_la_LDFLAGS = -version-info @SHARED_VERSION_INFO@
++libfftw3@PREC_SUFFIX@_omp_la_LIBADD = $(top_builddir)/libfftw3@PREC_SUFFIX@.la -lgomp
+--- fftw-3.3/Makefile.am.orig	2011-07-27 02:28:29.000000000 +0200
++++ fftw-3.3/Makefile.am	2011-07-28 20:18:54.851780384 +0200
 @@ -13,8 +13,8 @@
  
  ACLOCAL_AMFLAGS=-I m4
  
--SUBDIRS=support $(GENFFT) kernel simd dft rdft reodft api threads \
--cell libbench2 . tests doc tools m4
-+SUBDIRS=support $(GENFFT) kernel simd dft rdft reodft api . threads \
-+cell libbench2 tests doc tools m4
- EXTRA_DIST=COPYRIGHT bootstrap.sh CONVENTIONS fftw.pc.in README.Cell
+-SUBDIRS=support $(GENFFT) kernel simd-support dft rdft reodft api	\
+-threads libbench2 . tests mpi doc tools m4
++SUBDIRS=support $(GENFFT) kernel simd-support dft rdft reodft api .	\
++threads libbench2 tests mpi doc tools m4
+ EXTRA_DIST=COPYRIGHT bootstrap.sh CONVENTIONS fftw.pc.in
  
- if HAVE_SIMD
+ SIMD_LIBS =						\
