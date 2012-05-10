@@ -1,0 +1,4 @@
+- fix: added missing $RPM_BUILD_ROOT in %install,
+- added info patch with adding fftw to info index,
+- added "Prereq: /sbin/install-info" rule,
+- added {un}registering fftw info page in %post, %preun.
