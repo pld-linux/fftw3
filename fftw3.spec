@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_without	fftwl	# "long" subpackages
 %bcond_without	fftwq	# "quad" subpackages
-%bcond_without	gomp	# OpenMP support
+%bcond_without	openmp	# OpenMP support
 #
 Summary:	Fast Fourier Transform library
 Summary(pl.UTF-8):	Biblioteka z funkcjami szybkiej transformaty Fouriera
@@ -30,7 +30,7 @@ BuildRequires:	glibc >= 6:2.4-1
 BuildRequires:	gcc >= 6:4.6.0
 BuildRequires:	libquadmath-devel
 %endif
-%if %{with gomp}
+%if %{with openmp}
 BuildRequires:	gcc >= 6:4.2.0
 BuildRequires:	libgomp-devel
 %endif
@@ -71,7 +71,7 @@ Summary(pt_BR.UTF-8):	Headers e documentação do pacote FFTW
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-common-devel = %{version}-%{release}
-%{?with_gomp:Requires:	libgomp-devel}
+%{?with_openmp:Requires:	libgomp-devel}
 
 %description devel
 This package contains the files you need to develop programs using the
@@ -128,7 +128,7 @@ Summary(pl.UTF-8):	Pliki programistyczne do fftw pojedynczej precyzji
 Group:		Development/Libraries
 Requires:	%{name}-common-devel = %{version}-%{release}
 Requires:	%{name}-single = %{version}-%{release}
-%{?with_gomp:Requires:	libgomp-devel}
+%{?with_openmp:Requires:	libgomp-devel}
 
 %description single-devel
 This package contains the files you need to develop programs using the
@@ -178,7 +178,7 @@ Summary(pl.UTF-8):	Pliki programistyczne do fftw rozszerzonej precyzji
 Group:		Development/Libraries
 Requires:	%{name}-common-devel = %{version}-%{release}
 Requires:	%{name}-long = %{version}-%{release}
-%{?with_gomp:Requires:	libgomp-devel}
+%{?with_openmp:Requires:	libgomp-devel}
 
 %description long-devel
 This package contains the files you need to develop programs using the
@@ -228,7 +228,7 @@ Summary(pl.UTF-8):	Pliki programistyczne do fftw poczwórnej precyzji
 Group:		Development/Libraries
 Requires:	%{name}-common-devel = %{version}-%{release}
 Requires:	%{name}-quad = %{version}-%{release}
-%{?with_gomp:Requires:	libgomp-devel}
+%{?with_openmp:Requires:	libgomp-devel}
 Requires:	libquadmath-devel
 
 %description quad-devel
@@ -361,7 +361,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libfftw3.so.3
 %attr(755,root,root) %{_libdir}/libfftw3_threads.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfftw3_threads.so.3
-%if %{with gomp}
+%if %{with openmp}
 %attr(755,root,root) %{_libdir}/libfftw3_omp.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfftw3_omp.so.3
 %endif
@@ -373,7 +373,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libfftw3_threads.so
 %{_libdir}/libfftw3.la
 %{_libdir}/libfftw3_threads.la
-%if %{with gomp}
+%if %{with openmp}
 %attr(755,root,root) %{_libdir}/libfftw3_omp.so
 %{_libdir}/libfftw3_omp.la
 %endif
@@ -383,7 +383,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libfftw3.a
 %{_libdir}/libfftw3_threads.a
-%if %{with gomp}
+%if %{with openmp}
 %{_libdir}/libfftw3_omp.a
 %endif
 
@@ -394,7 +394,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libfftw3f.so.3
 %attr(755,root,root) %{_libdir}/libfftw3f_threads.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfftw3f_threads.so.3
-%if %{with gomp}
+%if %{with openmp}
 %attr(755,root,root) %{_libdir}/libfftw3f_omp.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfftw3f_omp.so.3
 %endif
@@ -406,7 +406,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libfftw3f_threads.so
 %{_libdir}/libfftw3f.la
 %{_libdir}/libfftw3f_threads.la
-%if %{with gomp}
+%if %{with openmp}
 %attr(755,root,root) %{_libdir}/libfftw3f_omp.so
 %{_libdir}/libfftw3f_omp.la
 %endif
@@ -416,7 +416,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libfftw3f.a
 %{_libdir}/libfftw3f_threads.a
-%if %{with gomp}
+%if %{with openmp}
 %{_libdir}/libfftw3f_omp.a
 %endif
 
@@ -428,7 +428,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libfftw3l.so.3
 %attr(755,root,root) %{_libdir}/libfftw3l_threads.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfftw3l_threads.so.3
-%if %{with gomp}
+%if %{with openmp}
 %attr(755,root,root) %{_libdir}/libfftw3l_omp.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfftw3l_omp.so.3
 %endif
@@ -440,7 +440,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libfftw3l_threads.so
 %{_libdir}/libfftw3l.la
 %{_libdir}/libfftw3l_threads.la
-%if %{with gomp}
+%if %{with openmp}
 %attr(755,root,root) %{_libdir}/libfftw3l_omp.so
 %{_libdir}/libfftw3l_omp.la
 %endif
@@ -451,7 +451,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libfftw3l.a
 %{_libdir}/libfftw3l_threads.a
-%if %{with gomp}
+%if %{with openmp}
 %{_libdir}/libfftw3l_omp.a
 %endif
 %endif
@@ -464,7 +464,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libfftw3q.so.3
 %attr(755,root,root) %{_libdir}/libfftw3q_threads.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfftw3q_threads.so.3
-%if %{with gomp}
+%if %{with openmp}
 %attr(755,root,root) %{_libdir}/libfftw3q_omp.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfftw3q_omp.so.3
 %endif
@@ -476,7 +476,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libfftw3q_threads.so
 %{_libdir}/libfftw3q.la
 %{_libdir}/libfftw3q_threads.la
-%if %{with gomp}
+%if %{with openmp}
 %attr(755,root,root) %{_libdir}/libfftw3q_omp.so
 %{_libdir}/libfftw3q_omp.la
 %endif
@@ -487,7 +487,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libfftw3q.a
 %{_libdir}/libfftw3q_threads.a
-%if %{with gomp}
+%if %{with openmp}
 %{_libdir}/libfftw3q_omp.a
 %endif
 %endif
