@@ -1,23 +1,33 @@
+# NOTE (for distributors from NEWS file): don't enable too many SIMD variants in
+# distribution builds, because it increases planing time; by default enable just
+# most popular ones (like SSE, AVX).
+# The rest are available by bconds.
+#
+# TODO: mpi
 #
 # Conditional build:
-%bcond_without	fftwl	# "long" subpackages
-%bcond_without	fftwq	# "quad" subpackages
-%bcond_without	openmp	# OpenMP support
+%bcond_without	fftwl		# "long" subpackages
+%bcond_without	fftwq		# "quad" subpackages
+%bcond_without	openmp		# OpenMP support
+%bcond_with	avx128fma	# AVX128/FMA instructions (for some AMD machines)
+%bcond_with	avx256		# AVX2 256-bit FMA instructions
+%bcond_with	avx512		# AVX512 and KCVI [experimental]
 #
 Summary:	Fast Fourier Transform library
 Summary(pl.UTF-8):	Biblioteka z funkcjami szybkiej transformaty Fouriera
 Summary(pt_BR.UTF-8):	biblioteca fast fourier transform
 Name:		fftw3
-Version:	3.3.4
-Release:	2
+Version:	3.3.6
+%define	subver	pl2
+Release:	1
 License:	GPL v2+
 Group:		Libraries
-Source0:	ftp://ftp.fftw.org/pub/fftw/fftw-%{version}.tar.gz
-# Source0-md5:	2edab8c06b24feeb3b82bbb3ebf3e7b3
+Source0:	ftp://ftp.fftw.org/pub/fftw/fftw-%{version}-%{subver}.tar.gz
+# Source0-md5:	927e481edbb32575397eb3d62535a856
 Patch0:		%{name}-info.patch
 URL:		http://www.fftw.org/
-BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.50
+BuildRequires:	automake >= 1:1.7
 BuildRequires:	gcc-fortran
 %ifarch alpha ppc s390 s390x sparc sparcv9
 %if %{with fftwl}
@@ -280,7 +290,7 @@ Pliki programistyczne wspólne dla wszystkich wersji bibliotek fftw
 (pliki nagłówkowe, dokumentacja programisty).
 
 %prep
-%setup -q -n fftw-%{version}
+%setup -q -n fftw-%{version}-%{subver}
 %patch0 -p1
 
 %build
@@ -292,36 +302,50 @@ Pliki programistyczne wspólne dla wszystkich wersji bibliotek fftw
 # MMX/SSE/etc. seem to be safe because of runtime CPU detection
 for ver in %{builds}; do
 	OPTS=""
-	# k7,SSE,3dnow,altivec only for single
+	# SSE,altivec,neon@arm[32] only for single
 	if [ "$ver" = "single" ]; then
-%ifarch i686 pentium3 pentium4
+%ifarch pentium3 athlon
+		# for SSE2-aware subarchs SSE for single precision is enabled by --enable-sse2 option
 		OPTS="--enable-sse"
 %endif
-%ifarch athlon
-		OPTS="--enable-sse" # no "--enable-k7" - conflicts with shared, SEGV on athlons
+%ifarch %{arm}
+		OPTS="--enable-neon"
 %endif
-%ifarch ppc
+%ifarch ppc ppc64
 		OPTS="--enable-altivec"
 %endif
-%ifnarch i686 k6 athlon ppc
-		:	# keep sh happy about syntax
+		: # keep sh happy about syntax on other archs
+	fi
+%ifarch i686 pentium4 %{x8664} x32
+	# SSE/SSE2 and AVX only for single and double
+	if [ "$ver" = "double" -o "$ver" = "single" ]; then
+		OPTS="$OPTS --enable-sse2 --enable-avx"
+%if %{with avx256}
+		OPTS="$OPTS --enable-avx2"
+%endif
+%if %{with avx512}
+		OPTS="$OPTS --enable-avx512 --enable-kcvi"
 %endif
 	fi
-%ifarch i686 pentium4
-	# SSE2 only for double
-	if [ "$ver" = "double" -o "$ver" = "single" ]; then
-		OPTS="--enable-sse2 --enable-avx"
-	fi
+%endif
+%if %{with avx128fma}
+	OPTS="$OPTS --enable-avx128-fma"
+%endif
+%ifarch aarch64
+	OPTS="$OPTS --enable-neon"
+%endif
+%ifarch ppc ppc64
+	OPTS="$OPTS --enable-vsx"
 %endif
 install -d build-${ver}
 cd build-${ver}
 ../%configure \
+	--enable-$ver \
+	--enable-debug%{!?debug:=no} \
 	--enable-openmp \
 	--enable-shared \
 	--enable-threads \
-	--enable-$ver \
-	$OPTS \
-	--%{!?debug:dis}%{?debug:en}able-debug
+	$OPTS
 
 %{__make}
 cd ..
