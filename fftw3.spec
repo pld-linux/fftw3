@@ -17,13 +17,13 @@ Summary:	Fast Fourier Transform library
 Summary(pl.UTF-8):	Biblioteka z funkcjami szybkiej transformaty Fouriera
 Summary(pt_BR.UTF-8):	biblioteca fast fourier transform
 Name:		fftw3
-Version:	3.3.6
-%define	subver	pl2
+Version:	3.3.7
 Release:	1
 License:	GPL v2+
 Group:		Libraries
-Source0:	ftp://ftp.fftw.org/pub/fftw/fftw-%{version}-%{subver}.tar.gz
-# Source0-md5:	927e481edbb32575397eb3d62535a856
+#Source0Download: http://fftw.org/download.html
+Source0:	http://fftw.org/fftw-%{version}.tar.gz
+# Source0-md5:	0d5915d7d39b3253c1cc05030d79ac47
 Patch0:		%{name}-info.patch
 URL:		http://www.fftw.org/
 BuildRequires:	autoconf >= 2.50
@@ -290,7 +290,7 @@ Pliki programistyczne wspólne dla wszystkich wersji bibliotek fftw
 (pliki nagłówkowe, dokumentacja programisty).
 
 %prep
-%setup -q -n fftw-%{version}-%{subver}
+%setup -q -n fftw-%{version}
 %patch0 -p1
 
 %build
@@ -308,7 +308,7 @@ for ver in %{builds}; do
 		# for SSE2-aware subarchs SSE for single precision is enabled by --enable-sse2 option
 		OPTS="--enable-sse"
 %endif
-%ifarch %{arm}
+%ifarch %{arm} aarch64
 		OPTS="--enable-neon"
 %endif
 %ifarch ppc ppc64
@@ -402,6 +402,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libfftw3_omp.la
 %endif
 %{_pkgconfigdir}/fftw3.pc
+%{_libdir}/cmake/fftw3/FFTW3Config*.cmake
 
 %files static
 %defattr(644,root,root,755)
@@ -435,6 +436,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libfftw3f_omp.la
 %endif
 %{_pkgconfigdir}/fftw3f.pc
+%{_libdir}/cmake/fftw3/FFTW3fConfig*.cmake
 
 %files single-static
 %defattr(644,root,root,755)
@@ -470,6 +472,7 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 %{_includedir}/fftw3l.f03
 %{_pkgconfigdir}/fftw3l.pc
+%{_libdir}/cmake/fftw3/FFTW3lConfig*.cmake
 
 %files long-static
 %defattr(644,root,root,755)
@@ -506,6 +509,7 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 %{_includedir}/fftw3q.f03
 %{_pkgconfigdir}/fftw3q.pc
+%{_libdir}/cmake/fftw3/FFTW3qConfig*.cmake
 
 %files quad-static
 %defattr(644,root,root,755)
@@ -529,4 +533,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/fftw3.f
 %{_includedir}/fftw3.f03
 %{_includedir}/fftw3.h
+%dir %{_libdir}/cmake/fftw3
 %{_infodir}/fftw3.info*
