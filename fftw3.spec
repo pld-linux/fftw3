@@ -17,13 +17,13 @@ Summary:	Fast Fourier Transform library
 Summary(pl.UTF-8):	Biblioteka z funkcjami szybkiej transformaty Fouriera
 Summary(pt_BR.UTF-8):	biblioteca fast fourier transform
 Name:		fftw3
-Version:	3.3.7
+Version:	3.3.8
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 #Source0Download: http://fftw.org/download.html
 Source0:	http://fftw.org/fftw-%{version}.tar.gz
-# Source0-md5:	0d5915d7d39b3253c1cc05030d79ac47
+# Source0-md5:	8aac833c943d8e90d51b697b27d4384d
 Patch0:		%{name}-info.patch
 URL:		http://www.fftw.org/
 BuildRequires:	autoconf >= 2.50
