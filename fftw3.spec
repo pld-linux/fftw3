@@ -13,6 +13,11 @@
 %bcond_with	avx256		# AVX2 256-bit FMA instructions
 %bcond_with	avx512		# AVX512 and KCVI [experimental]
 #
+
+%ifnarch %{ix86} %{x8664} x32 ia64
+%undefine	with_fftwq
+%endif
+
 Summary:	Fast Fourier Transform library
 Summary(pl.UTF-8):	Biblioteka z funkcjami szybkiej transformaty Fouriera
 Summary(pt_BR.UTF-8):	biblioteca fast fourier transform
