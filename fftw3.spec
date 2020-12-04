@@ -313,7 +313,7 @@ for ver in %{builds}; do
 		# for SSE2-aware subarchs SSE for single precision is enabled by --enable-sse2 option
 		OPTS="--enable-sse"
 %endif
-%ifarch %{arm} aarch64
+%ifarch armv7l armv7hl armv7hnl armv8l armv8hl armv8hnl armv8hcnl aarch64
 		OPTS="--enable-neon"
 %endif
 %ifarch ppc ppc64
