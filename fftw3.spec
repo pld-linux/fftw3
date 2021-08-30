@@ -30,6 +30,7 @@ Group:		Libraries
 Source0:	http://fftw.org/fftw-%{version}.tar.gz
 # Source0-md5:	8aac833c943d8e90d51b697b27d4384d
 Patch0:		%{name}-info.patch
+Patch1:		%{name}-flags.patch
 URL:		http://www.fftw.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.7
@@ -297,6 +298,7 @@ Pliki programistyczne wspólne dla wszystkich wersji bibliotek fftw
 %prep
 %setup -q -n fftw-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
