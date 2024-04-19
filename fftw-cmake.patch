@@ -1,0 +1,27 @@
+From 394fa85ab5f8914b82b3404844444c53f5c7f095 Mon Sep 17 00:00:00 2001
+From: tobim <tobim+github@fastmail.fm>
+Date: Thu, 11 Apr 2024 02:03:02 +0200
+Subject: [PATCH] Fix the cmake config file when configured with autotools
+ (#338)
+
+When the autotools based build is used the FFTW3ConfigDeps.cmake file is
+not generated, so including it fails with an error. By making the
+include optional, the config file can still be used in a limited
+fashion.
+---
+ FFTW3Config.cmake.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/FFTW3Config.cmake.in b/FFTW3Config.cmake.in
+index 6b1fbc2e1..6e073f5c8 100644
+--- a/FFTW3Config.cmake.in
++++ b/FFTW3Config.cmake.in
+@@ -10,7 +10,7 @@ set (FFTW3@PREC_SUFFIX@_LIBRARIES fftw3@PREC_SUFFIX@)
+ set (FFTW3@PREC_SUFFIX@_LIBRARY_DIRS @CMAKE_INSTALL_FULL_LIBDIR@)
+ set (FFTW3@PREC_SUFFIX@_INCLUDE_DIRS @CMAKE_INSTALL_FULL_INCLUDEDIR@)
+ 
+-include ("${CMAKE_CURRENT_LIST_DIR}/FFTW3LibraryDepends.cmake")
++include ("${CMAKE_CURRENT_LIST_DIR}/FFTW3LibraryDepends.cmake" OPTIONAL)
+ 
+ if (CMAKE_VERSION VERSION_LESS 2.8.3)
+   set (CMAKE_CURRENT_LIST_DIR)

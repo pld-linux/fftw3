@@ -1,0 +1,11 @@
+--- fftw-3.3.10/Makefile.am.orig	2020-12-10 13:02:44.000000000 +0100
++++ fftw-3.3.10/Makefile.am	2024-04-19 06:22:32.078215410 +0200
+@@ -153,7 +153,7 @@ FFTW3@PREC_SUFFIX@ConfigVersion.cmake: $
+ 	$(SED) \
+ 		-e 's|[@]FFTW_VERSION@|@PACKAGE_VERSION@|g' \
+ 		$(top_srcdir)/FFTW3ConfigVersion.cmake.in > $@
+-cmakedir = $(libdir)/cmake/fftw3
++cmakedir = $(libdir)/cmake/fftw3@PREC_SUFFIX@
+ cmake_DATA = FFTW3@PREC_SUFFIX@Config.cmake FFTW3@PREC_SUFFIX@ConfigVersion.cmake
+ 
+ WISDOM_DIR = /etc/fftw
