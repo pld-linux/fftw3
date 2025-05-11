@@ -385,6 +385,9 @@ rm -rf $RPM_BUILD_ROOT
 %post	long -p /sbin/ldconfig
 %postun	long -p /sbin/ldconfig
 
+%post	quad -p /sbin/ldconfig
+%postun	quad -p /sbin/ldconfig
+
 %post	common-devel -p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
