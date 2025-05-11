@@ -88,9 +88,9 @@ Summary:	Development files for fftw
 Summary(pl.UTF-8):	Pliki programistyczne do fftw
 Summary(pt_BR.UTF-8):	Headers e documentação do pacote FFTW
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
-Requires:	%{name}-common-devel = %{version}-%{release}
-%{?with_openmp:Requires:	libgomp-devel}
+Requires:	%{name}%{?_isa} = %{version}-%{release}
+Requires:	%{name}-common-devel%{?_isa} = %{version}-%{release}
+%{?with_openmp:Requires:	libgomp-devel%{?_isa}}
 
 %description devel
 This package contains the files you need to develop programs using the
@@ -109,7 +109,7 @@ Summary:	Static fftw libraries
 Summary(pl.UTF-8):	Statyczne biblioteki fftw
 Summary(pt_BR.UTF-8):	Bibliotecas estáticas do pacote FFTW
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-devel%{?_isa} = %{version}-%{release}
 
 %description static
 Static fftw libraries.
@@ -145,9 +145,9 @@ jednoprocesorowych oraz z obsługą wątków.
 Summary:	Development files for single precision fftw
 Summary(pl.UTF-8):	Pliki programistyczne do fftw pojedynczej precyzji
 Group:		Development/Libraries
-Requires:	%{name}-common-devel = %{version}-%{release}
-Requires:	%{name}-single = %{version}-%{release}
-%{?with_openmp:Requires:	libgomp-devel}
+Requires:	%{name}-common-devel%{?_isa} = %{version}-%{release}
+Requires:	%{name}-single%{?_isa} = %{version}-%{release}
+%{?with_openmp:Requires:	libgomp-devel%{?_isa}}
 
 %description single-devel
 This package contains the files you need to develop programs using the
@@ -162,7 +162,7 @@ precyzji.
 Summary:	Static fftw single precision libraries
 Summary(pl.UTF-8):	Statyczne biblioteki fftw pojedynczej precyzji
 Group:		Development/Libraries
-Requires:	%{name}-single-devel = %{version}-%{release}
+Requires:	%{name}-single-devel%{?_isa} = %{version}-%{release}
 
 %description single-static
 Static fftw single precision libraries.
@@ -195,9 +195,9 @@ jednoprocesorowych oraz z obsługą wątków.
 Summary:	Development files for long double precision fftw
 Summary(pl.UTF-8):	Pliki programistyczne do fftw rozszerzonej precyzji
 Group:		Development/Libraries
-Requires:	%{name}-common-devel = %{version}-%{release}
-Requires:	%{name}-long = %{version}-%{release}
-%{?with_openmp:Requires:	libgomp-devel}
+Requires:	%{name}-common-devel%{?_isa} = %{version}-%{release}
+Requires:	%{name}-long%{?_isa} = %{version}-%{release}
+%{?with_openmp:Requires:	libgomp-devel%{?_isa}}
 
 %description long-devel
 This package contains the files you need to develop programs using the
@@ -212,7 +212,7 @@ rozszerzonej precyzji.
 Summary:	Static fftw long double precision libraries
 Summary(pl.UTF-8):	Statyczne biblioteki fftw rozszerzonej precyzji
 Group:		Development/Libraries
-Requires:	%{name}-long-devel = %{version}-%{release}
+Requires:	%{name}-long-devel%{?_isa} = %{version}-%{release}
 
 %description long-static
 Static fftw long double precision libraries.
@@ -245,10 +245,10 @@ jednoprocesorowych oraz z obsługą wątków.
 Summary:	Development files for quad precision fftw
 Summary(pl.UTF-8):	Pliki programistyczne do fftw poczwórnej precyzji
 Group:		Development/Libraries
-Requires:	%{name}-common-devel = %{version}-%{release}
-Requires:	%{name}-quad = %{version}-%{release}
-%{?with_openmp:Requires:	libgomp-devel}
-Requires:	libquadmath-devel
+Requires:	%{name}-common-devel%{?_isa} = %{version}-%{release}
+Requires:	%{name}-quad%{?_isa} = %{version}-%{release}
+%{?with_openmp:Requires:	libgomp-devel%{?_isa}}
+Requires:	libquadmath-devel%{?_isa}
 
 %description quad-devel
 This package contains the files you need to develop programs using the
@@ -263,7 +263,7 @@ precyzji.
 Summary:	Static fftw quad precision libraries
 Summary(pl.UTF-8):	Statyczne biblioteki fftw poczwórnej precyzji
 Group:		Development/Libraries
-Requires:	%{name}-quad-devel = %{version}-%{release}
+Requires:	%{name}-quad-devel%{?_isa} = %{version}-%{release}
 
 %description quad-static
 Static fftw quad precision libraries.
