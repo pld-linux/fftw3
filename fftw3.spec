@@ -53,6 +53,7 @@ BuildRequires:	gcc >= 6:4.2.0
 BuildRequires:	libgomp-devel
 %endif
 BuildRequires:	libtool
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	texinfo
 Requires:	%{name}-common = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -274,6 +275,7 @@ Statyczne biblioteki fftw poczwórnej precyzji.
 Summary:	Files common for all versions of fftw libraries
 Summary(pl.UTF-8):	Pliki wspólne dla wszystkich wersji bibliotek fftw
 Group:		Libraries
+BuildArch:	noarch
 
 %description common
 Files common for all versions of fftw libraries (basic documentation,
